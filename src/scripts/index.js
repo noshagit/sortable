@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPage = parseInt(params.get('page')) || 1;
         pageSize = params.get('pageSize') === 'all' ? 'all' : parseInt(params.get('pageSize')) || 20;
         sortColumn = params.get('sortColumn') || 'name';
-        sortAscending = params.get('sortAscending') === 'true';
+        sortAscending = params.get('sortAscending') === 'true' || params.get('sortAscending') === null;
         pageSizeSelect.value = pageSize;
     };
 
