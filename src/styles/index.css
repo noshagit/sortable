@@ -1,50 +1,127 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    background-color: rgba(60, 81, 79, 1);
+    color: rgba(244, 244, 242, 1);
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(125, 146, 129, 1);
+    background-image: url("/src/images/header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    text-align: center;
+    color: rgba(244, 244, 242, 1);
 }
 
 h1 {
-    text-align: center;
+    font-size: 2.5rem;
+    margin: 0;
+    text-decoration: double underline;
+    text-decoration-color: rgba(186, 135, 89, 1);
+    -webkit-text-stroke: 1.5px rgba(186, 135, 89, 1);
 }
 
-input, select {
-    margin: 10px;
+main {
+    padding: 20px;
+}
+
+input[type="text"],
+select {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(60, 81, 79, 0.8);
+    color: rgba(244, 244, 242, 1);
+    border: 1px solid rgba(125, 146, 129, 1);
+    border-radius: 5px;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: rgba(186, 135, 89, 1);
+    outline: none;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    cursor: pointer;
-    background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
-
-img {
-    width: 50px;
-    height: auto;
-}
-
-#pagination {
-    text-align: center;
     margin-top: 20px;
 }
 
-button {
-    margin: 5px;
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(125, 146, 129, 0.3);
+}
+
+th {
+    background-color: rgba(60, 81, 79, 1);
+    color: rgba(244, 244, 242, 1);
+    cursor: pointer;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(244, 244, 242, 1);
+}
+
+td img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    background-color: rgba(60, 81, 79, 1);
+    color: rgba(244, 244, 242, 1);
+    border: 1px solid rgba(125, 146, 129, 1);
+    padding: 10px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#pagination button:hover {
+    background-color: rgba(186, 135, 89, 1);
+    border-color: rgba(186, 135, 89, 1);
+}
+
+#pagination button:disabled {
+    background-color: rgba(125, 146, 129, 0.5);
+    cursor: not-allowed;
+}
+
+footer {
+    text-align: center;
+    background-color: rgba(60, 81, 79, 1);
+    padding: 10px;
+    color: rgba(244, 244, 242, 1);
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer p:last-child {
+    font-size: 0.8rem;
+    color: rgba(186, 135, 89, 1);
 }
