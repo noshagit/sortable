@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(60, 81, 79, 1);
+    color: rgba(244, 244, 242, 1);
+    text-align: center;
+}
+
+header {
+    background-color: rgba(125, 146, 129, 1);
+    background-image: url("/src/images/header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+}
+
+.title-button {
+    display: inline-block;
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: rgba(244, 244, 242, 1);
+    text-decoration: double underline;
+    text-decoration-color: rgba(186, 135, 89, 1);
+    -webkit-text-stroke: 1.5px rgba(186, 135, 89, 1);
+    padding: 10px 20px;
+    background-color: rgba(60, 81, 79, 1);
+    border: 2px solid rgba(186, 135, 89, 1);
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.title-button:hover {
+    background-color: rgba(186, 135, 89, 1);
+    transform: scale(1.05);
+}
+
+
+main {
+    padding: 20px;
+    align-items: center;
+}
+
+.selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+select, button {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+select {
+    background-color: rgba(60, 81, 79, 0.8);
+    color: rgba(244, 244, 242, 1);
+    border: 1px solid rgba(125, 146, 129, 1);
+}
+
+button {
+    background-color: rgba(60, 81, 79, 1);
+    color: rgba(244, 244, 242, 1);
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: rgba(125, 146, 129, 0.5);
+    cursor: not-allowed;
+}
+
+button:hover:enabled {
+    background-color: rgba(186, 135, 89, 1);
+}
+
+#combatResult {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}

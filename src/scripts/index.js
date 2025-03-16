@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return uniqueStats.length > 0 ? total / uniqueStats.length : 0;
     };
 
+    const compareHeroesButton = document.getElementById('compareHeroes');
+    const fightHeroesButton = document.getElementById('fightHeroes');
+
+    compareHeroesButton.addEventListener('click', () => {
+        window.location.href = 'compare.html';
+    });
+
+    fightHeroesButton.addEventListener('click', () => {
+        window.location.href = 'fight.html';
+    });
+
     const loadData = (data) => {
         heroes = data;
         renderTable();
