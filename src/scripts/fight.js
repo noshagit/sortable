@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hero2 = heroes.find(h => h.id == hero2Select.value);
         const winner = determineWinner(hero1, hero2);
 
-        combatText.textContent = `Le vainqueur est : ${winner.name} !`;
+        combatText.textContent = `The winner is: ${winner.name}!`;
         combatResult.classList.remove('hidden');
     };
 

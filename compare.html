@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Superheroes</title>
+    <link rel="stylesheet" href="/src/styles/compare.css">
+</head>
+<body>
+    <header>
+        <button id="compareMenu">Compare menu</button>
+    </header>
+    <main>
+        <div class="selector">
+            <label for="heroSelect1">Choose Hero 1:</label>
+            <select id="heroSelect1"></select>
+            <label for="heroSelect2">Choose Hero 2:</label>
+            <select id="heroSelect2"></select>
+            <button id="compareButton">Compare</button>
+        </div>
+        <div id="comparison">
+            <div class="hero" id="hero1">
+            <img id="heroImage1" src="" alt="Hero 1 Image">
+            <h2 id="heroName1"></h2>
+            <h2 id="heroFullName1"></h2>
+            <div class="heroText">
+                <h3>Biography</h3>
+                <p id="heroAlterEgos1"></p>
+                <p id="heroAliases1"></p>
+                <p id="heroPlaceOfBirth1"></p>
+                <p id="heroFirstAppearance1"></p>
+                <p id="heroPublisher1"></p>
+                <p id="heroAlignment1"></p>
+            </div>
+            <div class="heroText">
+                <h3>Job and Affiliations</h3>
+                <p id="heroOccupation1"></p>
+                <p id="heroBase1"></p>
+                <p id="heroGroupAffiliation1"></p>
+                <p id="heroRelatives1"></p>
+            </div>
+            <div class="heroText">
+                <h3>Hero Statistics</h3>
+                <p id="heroIntelligence1"></p>
+                <p id="heroStrength1"></p>
+                <p id="heroSpeed1"></p>
+                <p id="heroDurability1"></p>
+                <p id="heroPower1"></p>
+                <p id="heroCombat1"></p>
+            </div>
+            <div class="heroText">
+                <h3>Hero's Physical Appearance</h3>
+                <p id="heroGender1"></p>
+                <p id="heroRace1"></p>
+                <p id="heroHeight1"></p>
+                <p id="heroWeight1"></p>
+                <p id="heroEyeColor1"></p>
+                <p id="heroHairColor1"></p>
+            </div>
+            </div>
+            <div class="hero" id="hero2">
+            <img id="heroImage2" src="" alt="Hero 2 Image">
+            <h2 id="heroName2"></h2>
+            <h2 id="heroFullName2"></h2>
+            <div class="heroText">
+                <h3>Biography</h3>
+                <p id="heroAlterEgos2"></p>
+                <p id="heroAliases2"></p>
+                <p id="heroPlaceOfBirth2"></p>
+                <p id="heroFirstAppearance2"></p>
+                <p id="heroPublisher2"></p>
+                <p id="heroAlignment2"></p>
+            </div>
+            <div class="heroText">
+                <h3>Job and Affiliations</h3>
+                <p id="heroOccupation2"></p>
+                <p id="heroBase2"></p>
+                <p id="heroGroupAffiliation2"></p>
+                <p id="heroRelatives2"></p>
+            </div>
+            <div class="heroText">
+                <h3>Hero Statistics</h3>
+                <p id="heroIntelligence2"></p>
+                <p id="heroStrength2"></p>
+                <p id="heroSpeed2"></p>
+                <p id="heroDurability2"></p>
+                <p id="heroPower2"></p>
+                <p id="heroCombat2"></p>
+            </div>
+            <div class="heroText">
+                <h3>Hero's Physical Appearance</h3>
+                <p id="heroGender2"></p>
+                <p id="heroRace2"></p>
+                <p id="heroHeight2"></p>
+                <p id="heroWeight2"></p>
+                <p id="heroEyeColor2"></p>
+                <p id="heroHairColor2"></p>
+            </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Superhero Comparison</p>
+        <p>Exercice - Sortable - 2024/2025</p>
+        <p>Ilian BEN HAMOU & Valentin ARCIL</p>
+    </footer>
+    <script src="/src/scripts/compare.js"></script>
+</body>
+</html>
