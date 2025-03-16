@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const urlParams = new URLSearchParams(window.location.search);
     const heroId = urlParams.get('heroId');
     
@@ -43,5 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('backButton').addEventListener('click', () => {
         window.history.back();
+    });
+    
+    document.getElementById('superheroDetailsButton').addEventListener('click', () => {
+        window.location.href = 'index.html';
     });
 });
