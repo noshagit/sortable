@@ -99,7 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (sortAscending) {
                 return aValue > bValue ? 1 : -1;
-            } else {
+            } else if (aValue === bValue) {
+                    return a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1;
+            }
+            else {
                 return aValue < bValue ? 1 : -1;
             }
         });
