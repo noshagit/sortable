@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let sortColumn = 'name';
     let sortAscending = true;
 
+    const calculateAveragePowerStat = (powerStats) => {
+        const stats = Object.values(powerStats)
+            .filter(stat => typeof stat === 'number' && !isNaN(stat));
+        const uniqueStats = stats.filter((stat, index, array) => 
+            index === 0 || stat !== array[index - 1] + 1
+        );
+        const total = uniqueStats.reduce((sum, stat) => sum + stat, 0);
+        return uniqueStats.length > 0 ? total / uniqueStats.length : 0;
+    };
+
     const loadData = (data) => {
         heroes = data;
         renderTable();
@@ -36,43 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(searchInput.value.toLowerCase()));
         const sortedHeroes = filteredHeroes.sort((a, b) => {
             let aValue, bValue;
-    
+
             switch (sortColumn) {
                 case 'fullName':
-                    aValue = a.biography.fullName;
-                    bValue = b.biography.fullName;
+                    aValue = a.biography.fullName || '';
+                    bValue = b.biography.fullName || '';
                     break;
-                case 'intelligence':
-                    aValue = a.powerstats.intelligence;
-                    bValue = b.powerstats.intelligence;
-                    break;
-                case 'strength':
-                    aValue = a.powerstats.strength;
-                    bValue = b.powerstats.strength;
-                    break;
-                case 'speed':
-                    aValue = a.powerstats.speed;
-                    bValue = b.powerstats.speed;
-                    break;
-                case 'durability':
-                    aValue = a.powerstats.durability;
-                    bValue = b.powerstats.durability;
-                    break;
-                case 'power':
-                    aValue = a.powerstats.power;
-                    bValue = b.powerstats.power;
-                    break;
-                case 'combat':
-                    aValue = a.powerstats.combat;
-                    bValue = b.powerstats.combat;
+                case 'powerStats':
+                    aValue = calculateAveragePowerStat(a.powerstats);
+                    bValue = calculateAveragePowerStat(b.powerstats);
                     break;
                 case 'race':
-                    aValue = a.appearance.race;
-                    bValue = b.appearance.race;
+                    aValue = a.appearance.race || '';
+                    bValue = b.appearance.race || '';
                     break;
                 case 'gender':
-                    aValue = a.appearance.gender;
-                    bValue = b.appearance.gender;
+                    aValue = a.appearance.gender || '';
+                    bValue = b.appearance.gender || '';
                     break;
                 case 'height':
                     aValue = parseFloat(a.appearance.height[0]) || 0;
@@ -83,30 +73,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     bValue = parseFloat(b.appearance.weight.find(w => w.includes('lb'))?.split(' ')[0]) || 0;
                     break;
                 case 'placeOfBirth':
-                    aValue = a.biography.placeOfBirth;
-                    bValue = b.biography.placeOfBirth;
+                    aValue = a.biography.placeOfBirth || '';
+                    bValue = b.biography.placeOfBirth || '';
                     break;
                 case 'alignment':
-                    aValue = a.biography.alignment;
-                    bValue = b.biography.alignment;
+                    aValue = a.biography.alignment || '';
+                    bValue = b.biography.alignment || '';
                     break;
                 default:
-                    aValue = a.name;
-                    bValue = b.name;
+                    aValue = a.name || '';
+                    bValue = b.name || '';
             }
-    
+
             const specialValues = ["-", "null", "- lb", "", " ", "None", "null lbs", "null cm", null];
             const aIsSpecial = specialValues.includes(aValue);
             const bIsSpecial = specialValues.includes(bValue);
     
             if (aIsSpecial && !bIsSpecial) return 1;
             if (!aIsSpecial && bIsSpecial) return -1;
-    
+
             if (typeof aValue === 'string' && typeof bValue === 'string') {
                 aValue = aValue.toLowerCase();
                 bValue = bValue.toLowerCase();
             }
-    
+
             if (sortAscending) {
                 return aValue > bValue ? 1 : -1;
             } else {
@@ -126,19 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             row.insertCell().innerHTML = `<img src="${hero.images.xs}" alt="${hero.name}">`;
             row.insertCell().textContent = hero.name;
-            row.insertCell().textContent = hero.biography.fullName;
-            row.insertCell().textContent = hero.powerstats.intelligence;
-            row.insertCell().textContent = hero.powerstats.strength;
-            row.insertCell().textContent = hero.powerstats.speed;
-            row.insertCell().textContent = hero.powerstats.durability;
-            row.insertCell().textContent = hero.powerstats.power;
-            row.insertCell().textContent = hero.powerstats.combat;
-            row.insertCell().textContent = hero.appearance.race;
-            row.insertCell().textContent = hero.appearance.gender;
-            row.insertCell().textContent = hero.appearance.height.join(', ');
-            row.insertCell().textContent = hero.appearance.weight.join(', ');
-            row.insertCell().textContent = hero.biography.placeOfBirth;
-            row.insertCell().textContent = hero.biography.alignment;
+            row.insertCell().textContent = hero.biography.fullName || 'N/A';
+            row.insertCell().textContent = Object.entries(hero.powerstats)
+                .map(([key, value]) => `${key}: ${value || 'N/A'}`)
+                .join(' | ');
+            row.insertCell().textContent = hero.appearance.race || 'N/A';
+            row.insertCell().textContent = hero.appearance.gender || 'N/A';
+            row.insertCell().textContent = hero.appearance.height.join(', ') || 'N/A';
+            row.insertCell().textContent = hero.appearance.weight.join(', ') || 'N/A';
+            row.insertCell().textContent = hero.biography.placeOfBirth || 'N/A';
+            row.insertCell().textContent = hero.biography.alignment || 'N/A';
         });
 
         pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredHeroes.length / pageSize)}`;
@@ -182,6 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTable();
         }
     });
+
+
 
     document.querySelectorAll('th').forEach(th => {
         th.addEventListener('click', () => {
