@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable();
     };
 
+    const togglePaginationControls = () => {
+        const shouldHide = pageSize === 'all';
+        prevPageButton.style.display = shouldHide ? 'none' : '';
+        nextPageButton.style.display = shouldHide ? 'none' : '';
+        pageInfo.style.display = shouldHide ? 'none' : '';
+    };
+
     const fetchHeroes = () => {
         fetch("https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json")
             .then(response => response.json())
@@ -95,10 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     bValue = b.name;
             }
     
+            const specialValues = ["-", "null", "- lb", "No alter egos found.", "", "No Hair"];
+            const aIsSpecial = specialValues.includes(aValue);
+            const bIsSpecial = specialValues.includes(bValue);
+    
+            if (aIsSpecial && !bIsSpecial) return 1;
+            if (!aIsSpecial && bIsSpecial) return -1;
+    
             if (typeof aValue === 'string' && typeof bValue === 'string') {
                 aValue = aValue.toLowerCase();
                 bValue = bValue.toLowerCase();
             }
+    
             if (sortAscending) {
                 return aValue > bValue ? 1 : -1;
             } else {
@@ -189,5 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     loadFromURL();
+    togglePaginationControls();
     fetchHeroes();
 });
