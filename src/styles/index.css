@@ -125,3 +125,114 @@ footer p:last-child {
     font-size: 0.8rem;
     color: rgba(186, 135, 89, 1);
 }
+
+/* Mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    header {
+        padding: 15px;
+        width: 100%;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    #pagination button {
+        padding: 8px 10px;
+        margin: 0 5px;
+    }
+
+    footer {
+        padding: 5px;
+    }
+}
+
+/* Tablets (max-width: 900px) */
+@media (max-width: 900px) {
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    header {
+        padding: 20px;
+        width: 100%;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    #pagination button {
+        padding: 10px 12px;
+        margin: 0 8px;
+    }
+
+    footer {
+        padding: 8px;
+    }
+}
+
+/* Large screens (min-width: 1200px) */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    header {
+        padding: 30px;
+        width: 100%;
+    }
+
+    main {
+        padding: 30px;
+    }
+
+    table {
+        font-size: 16px;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    #pagination button {
+        padding: 12px 20px;
+        margin: 0 12px;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
