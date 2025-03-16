@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(loadData);
     };
 
+    const updateURL = () => {
+        const params = new URLSearchParams();
+        params.set('search', searchInput.value);
+        params.set('page', currentPage);
+        params.set('pageSize', pageSize);
+        params.set('sortColumn', sortColumn);
+        params.set('sortAscending', sortAscending);
+        history.replaceState(null, '', '?' + params.toString());
+    };
+
     const renderTable = () => {
         const filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(searchInput.value.toLowerCase()));
         const sortedHeroes = filteredHeroes.sort((a, b) => {
@@ -65,6 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
         pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredHeroes.length / pageSize)}`;
         prevPageButton.disabled = currentPage === 1;
         nextPageButton.disabled = currentPage === Math.ceil(filteredHeroes.length / pageSize);
+
+        updateURL();
+    };
+
+    const loadFromURL = () => {
+        const params = new URLSearchParams(window.location.search);
+        searchInput.value = params.get('search') || '';
+        currentPage = parseInt(params.get('page')) || 1;
+        pageSize = params.get('pageSize') === 'all' ? 'all' : parseInt(params.get('pageSize')) || 20;
+        sortColumn = params.get('sortColumn') || 'name';
+        sortAscending = params.get('sortAscending') === 'true';
+        pageSizeSelect.value = pageSize;
     };
 
     searchInput.addEventListener('input', () => {
@@ -105,5 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    loadFromURL();
     fetchHeroes();
 });
