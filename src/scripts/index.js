@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     bValue = b.name;
             }
     
-            const specialValues = ["-", "null", "- lb", "No alter egos found.", "", "No Hair", " ", "None", "null lbs", "null cm", null];
+            const specialValues = ["-", "null", "- lb", "", " ", "None", "null lbs", "null cm", null];
             const aIsSpecial = specialValues.includes(aValue);
             const bIsSpecial = specialValues.includes(bValue);
     
@@ -198,6 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    loadFromURL();
     fetchHeroes();
+    loadFromURL();
 });
