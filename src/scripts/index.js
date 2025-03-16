@@ -35,8 +35,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderTable = () => {
         const filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(searchInput.value.toLowerCase()));
         const sortedHeroes = filteredHeroes.sort((a, b) => {
-            let aValue = a[sortColumn];
-            let bValue = b[sortColumn];
+            let aValue, bValue;
+    
+            switch (sortColumn) {
+                case 'fullName':
+                    aValue = a.biography.fullName;
+                    bValue = b.biography.fullName;
+                    break;
+                case 'intelligence':
+                    aValue = a.powerstats.intelligence;
+                    bValue = b.powerstats.intelligence;
+                    break;
+                case 'strength':
+                    aValue = a.powerstats.strength;
+                    bValue = b.powerstats.strength;
+                    break;
+                case 'speed':
+                    aValue = a.powerstats.speed;
+                    bValue = b.powerstats.speed;
+                    break;
+                case 'durability':
+                    aValue = a.powerstats.durability;
+                    bValue = b.powerstats.durability;
+                    break;
+                case 'power':
+                    aValue = a.powerstats.power;
+                    bValue = b.powerstats.power;
+                    break;
+                case 'combat':
+                    aValue = a.powerstats.combat;
+                    bValue = b.powerstats.combat;
+                    break;
+                case 'race':
+                    aValue = a.appearance.race;
+                    bValue = b.appearance.race;
+                    break;
+                case 'gender':
+                    aValue = a.appearance.gender;
+                    bValue = b.appearance.gender;
+                    break;
+                case 'height':
+                    aValue = a.appearance.height.join(', ');
+                    bValue = b.appearance.height.join(', ');
+                    break;
+                case 'weight':
+                    aValue = a.appearance.weight.join(', ');
+                    bValue = b.appearance.weight.join(', ');
+                    break;
+                case 'placeOfBirth':
+                    aValue = a.biography.placeOfBirth;
+                    bValue = b.biography.placeOfBirth;
+                    break;
+                case 'alignment':
+                    aValue = a.biography.alignment;
+                    bValue = b.biography.alignment;
+                    break;
+                default:
+                    aValue = a.name;
+                    bValue = b.name;
+            }
+    
             if (typeof aValue === 'string' && typeof bValue === 'string') {
                 aValue = aValue.toLowerCase();
                 bValue = bValue.toLowerCase();
@@ -119,9 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const column = th.getAttribute('data-column');
             if (sortColumn === column) {
                 sortAscending = !sortAscending;
+                th.textContent = th.textContent.replace(/ ↑| ↓/g, '');
+                th.textContent += sortAscending ? ' ↑' : ' ↓';
             } else {
                 sortColumn = column;
                 sortAscending = true;
+                th.textContent = th.textContent.replace(/ ↑| ↓/g, '');
             }
             renderTable();
         });
