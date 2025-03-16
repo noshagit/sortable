@@ -7,39 +7,51 @@
     <link rel="stylesheet" href="/src/styles/index.css">
 </head>
 <body>
-    <h1>Superhero Data</h1>
-    <input type="text" id="search" placeholder="Search by name...">
-    <label for="pageSize">Page Size:</label>
-    <select id="pageSize">
-        <option value="10">10</option>
-        <option value="20" selected>20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="all">All</option>
-    </select>
-    <table id="heroTable">
-        <thead>
-            <tr>
-                <th data-column="icon">Icon</th>
-                <th data-column="name">Name</th>
-                <th data-column="fullName">Full Name</th>
-                <th data-column="intelligence">Intelligence</th>
-                <th data-column="strength">Strength</th>
-                <th data-column="speed">Speed</th>
-                <th data-column="durability">Durability</th>
-                <th data-column="power">Power</th>
-                <th data-column="combat">Combat</th>
-                <th data-column="race">Race</th>
-                <th data-column="gender">Gender</th>
-                <th data-column="height">Height</th>
-                <th data-column="weight">Weight</th>
-                <th data-column="placeOfBirth">Place Of Birth</th>
-                <th data-column="alignment">Alignment</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <header>
+        <h1>Superhero Data</h1>
+    </header>
+    <main>
+        <input type="text" id="search" placeholder="Search by name...">
+        <label for="pageSize">Page Size:</label>
+        <select id="pageSize">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+        </select>
+        <table id="heroTable">
+            <thead>
+                <tr>
+                    <th data-column="icon">Icon</th>
+                    <th data-column="name">Name</th>
+                    <th data-column="fullName">Full Name</th>
+                    <th data-column="intelligence">Intelligence</th>
+                    <th data-column="strength">Strength</th>
+                    <th data-column="speed">Speed</th>
+                    <th data-column="durability">Durability</th>
+                    <th data-column="power">Power</th>
+                    <th data-column="combat">Combat</th>
+                    <th data-column="race">Race</th>
+                    <th data-column="gender">Gender</th>
+                    <th data-column="height">Height</th>
+                    <th data-column="weight">Weight</th>
+                    <th data-column="placeOfBirth">Place Of Birth</th>
+                    <th data-column="alignment">Alignment</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="pagination">
+            <button id="prevPage">Previous</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">Next</button>
+        </div>
+    </main>
+    <footer>
+        
+    </footer>
     <script src="/src/scripts/index.js"></script>
 </body>
 </html>

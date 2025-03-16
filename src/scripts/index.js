@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTable = document.getElementById('heroTable').getElementsByTagName('tbody')[0];
     const searchInput = document.getElementById('search');
     const pageSizeSelect = document.getElementById('pageSize');
+    const prevPageButton = document.getElementById('prevPage');
+    const nextPageButton = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
     let heroes = [];
     let currentPage = 1;
     let pageSize = parseInt(pageSizeSelect.value);
@@ -58,13 +61,35 @@ document.addEventListener('DOMContentLoaded', () => {
             row.insertCell().textContent = hero.biography.placeOfBirth;
             row.insertCell().textContent = hero.biography.alignment;
         });
+
+        pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredHeroes.length / pageSize)}`;
+        prevPageButton.disabled = currentPage === 1;
+        nextPageButton.disabled = currentPage === Math.ceil(filteredHeroes.length / pageSize);
     };
 
-    searchInput.addEventListener('input', renderTable);
+    searchInput.addEventListener('input', () => {
+        currentPage = 1;
+        renderTable();
+    });
+
     pageSizeSelect.addEventListener('change', () => {
         pageSize = pageSizeSelect.value === 'all' ? 'all' : parseInt(pageSizeSelect.value);
         currentPage = 1;
         renderTable();
+    });
+
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+        if (currentPage < Math.ceil(heroes.filter(hero => hero.name.toLowerCase().includes(searchInput.value.toLowerCase())).length / pageSize)) {
+            currentPage++;
+            renderTable();
+        }
     });
 
     document.querySelectorAll('th').forEach(th => {
