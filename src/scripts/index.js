@@ -16,13 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable();
     };
 
-    const togglePaginationControls = () => {
-        const shouldHide = pageSize === 'all';
-        prevPageButton.style.display = shouldHide ? 'none' : '';
-        nextPageButton.style.display = shouldHide ? 'none' : '';
-        pageInfo.style.display = shouldHide ? 'none' : '';
-    };
-
     const fetchHeroes = () => {
         fetch("https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json")
             .then(response => response.json())
@@ -82,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     bValue = b.appearance.gender;
                     break;
                 case 'height':
-                    aValue = a.appearance.height.join(', ');
-                    bValue = b.appearance.height.join(', ');
+                    aValue = parseFloat(a.appearance.height[0]) || 0;
+                    bValue = parseFloat(b.appearance.height[0]) || 0;
                     break;
                 case 'weight':
-                    aValue = a.appearance.weight.join(', ');
-                    bValue = b.appearance.weight.join(', ');
+                    aValue = parseFloat(a.appearance.weight.find(w => w.includes('lb'))?.split(' ')[0]) || 0;
+                    bValue = parseFloat(b.appearance.weight.find(w => w.includes('lb'))?.split(' ')[0]) || 0;
                     break;
                 case 'placeOfBirth':
                     aValue = a.biography.placeOfBirth;
@@ -102,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     bValue = b.name;
             }
     
-            const specialValues = ["-", "null", "- lb", "No alter egos found.", "", "No Hair"];
+            const specialValues = ["-", "null", "- lb", "No alter egos found.", "", "No Hair", " ", "None", "null lbs", "null cm", null];
             const aIsSpecial = specialValues.includes(aValue);
             const bIsSpecial = specialValues.includes(bValue);
     
@@ -190,20 +183,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('th').forEach(th => {
         th.addEventListener('click', () => {
             const column = th.getAttribute('data-column');
+            document.querySelectorAll('th').forEach(header => {
+                header.textContent = header.textContent.replace(/ ↑| ↓/g, '');
+            });
             if (sortColumn === column) {
                 sortAscending = !sortAscending;
-                th.textContent = th.textContent.replace(/ ↑| ↓/g, '');
                 th.textContent += sortAscending ? ' ↑' : ' ↓';
             } else {
                 sortColumn = column;
                 sortAscending = true;
-                th.textContent = th.textContent.replace(/ ↑| ↓/g, '');
+                th.textContent += ' ↑';
             }
             renderTable();
         });
     });
 
     loadFromURL();
-    togglePaginationControls();
     fetchHeroes();
 });
