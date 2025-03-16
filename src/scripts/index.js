@@ -121,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
         heroTable.innerHTML = '';
         heroesToDisplay.forEach(hero => {
             const row = heroTable.insertRow();
+            row.addEventListener('click', () => {
+                window.location.href = `advanced.html?heroId=${hero.id}`;
+            });
             row.insertCell().innerHTML = `<img src="${hero.images.xs}" alt="${hero.name}">`;
             row.insertCell().textContent = hero.name;
             row.insertCell().textContent = hero.biography.fullName;
